@@ -1,10 +1,11 @@
+
 $(document).ready(function(){
     $('ul.tabs').tabs({
       swipeable : true,
       responsiveThreshold : 1920
     });
   });
-
+  var socket = io.connect("https://remind-me-web.herokuapp.com");
   $("#todo").keydown(function(event) {
   if (event.which == 13) {
    event.preventDefault();
@@ -15,18 +16,19 @@ $(document).ready(function(){
   var app = new Vue({
   el: '#app',
   data: {
-    todos: [
-      { text: 'Learn JavaScript', done:false },
-      { text: 'Learn Vue', done:false},
-      { text: 'Build something awesome', done:false}
-    ],
-    dones: [
-
-    ]
+    todos: [],
+    dones: []
   },
   methods:{
     addTodo: function(str){
-      this.todos.push({text:str});
+      var nTodo = {"text":str,"done":false};
+      socket.emit('change-notify',nTodo);
+      this.todos.push(nTodo);
     }
+  },
+  mounted(){
+    socket.on('list-changed',function(data){
+      app.todos=data;
+    });
   }
 });

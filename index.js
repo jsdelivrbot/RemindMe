@@ -10,8 +10,8 @@ var server = app.listen((process.env.PORT || 5000),function(){
 });
 
 //Get all active connections
-app.get('/test', function (req, res) {
-        // Get content from file
+app.get('/todos', function (req, res) {
+    // Get content from file
     var contents = fs.readFileSync("todos.json");
     // Define to JSON type
     var jsonContent = JSON.parse(contents);
@@ -26,6 +26,14 @@ var io = socket(server);
 io.on('connection',function(socket){
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
-        socket.broadcast.emit('list-changed',data);
+        // Get content from file
+        var contents = fs.readFileSync("todos.json");
+        // Define to JSON type
+        var jsonContent = JSON.parse(contents);
+        jsonContent.push(data);
+        fs.writeFile("todos.json", jsonContent, function (err) {
+            if (err) return console.log(err);
+        });
+        socket.broadcast.emit('list-changed',jsonContent);
     });
 });
