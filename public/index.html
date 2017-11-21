@@ -49,8 +49,11 @@
 <script src="content/js/materialize.js"></script>
 <script src="content/js/vue.min.js"></script>
 <script>
-  $(document).ready(function(){
-      $('.tabs').tabs();
+$(document).ready(function(){
+    $('ul.tabs').tabs({
+      swipeable : true,
+      responsiveThreshold : 1920
+    });
   });
 
   $("#todo").keydown(function(event) {
@@ -78,6 +81,7 @@
     }
   }
 })
+
 
 </script>
 </body>
