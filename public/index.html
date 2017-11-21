@@ -1,0 +1,90 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>RemindMe</title>
+    <link rel="stylesheet" href="content/css/materialize.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div id="app">
+  <div class="blue-grey center">
+      <img src="content/graphics/images/Remindme.png" height="48" alt="Logo">
+  </div>
+      <ul id="tabs-swipe-demo" class="tabs blue-grey">
+          <li class="tab col s6"><a class="active" href="#todo-tab">To-do</a></li>
+          <li class="tab col s6"><a href="#done-tab">Done</a></li>
+      </ul>
+          <div id="todo-tab" class="col s12">
+            <h4>To-do:</h4>
+              <p>
+                <input type="checkbox" id="test5" />
+                <label for="test5">Red</label>
+              </p>
+                <ol>
+                  <li v-for="todoitem in todos">
+                    <div class="text-blue">{{todoitem.text}}</div>
+                    <p>
+                        <input type="checkbox" id="test5" />
+                        <label for="test5">Red</label>
+                      </p>
+                  </li>
+                </ol>
+              <div class="row">
+               <div class="col s10"><input id="todo" type="text" placeholder="Todo"/></div>  
+               <div class="col s2">        
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </div>
+              </div>
+          </div>
+          <div id="done-tab" class="col s12">
+            <h4>Done:</h4>
+                <ol>
+                  <li v-for="doneitem in done">
+                    <div class="text-blue">{{doneitem.text}}</div>
+                  </li>
+                </ol>
+          </div>
+        </div>
+<script src="content/js/jquery-3.2.1.js"></script>
+<script src="content/js/materialize.js"></script>
+<script src="content/js/vue.min.js"></script>
+<script>
+  $(document).ready(function(){
+      $('.tabs').tabs();
+  });
+
+  $("#todo").keydown(function(event) {
+  if (event.which == 13) {
+   event.preventDefault();
+   var todo= $("#todo").val();
+   app.addTodo(todo);
+  }
+  });
+  var app = new Vue({
+  el: '#app',
+  data: {
+    todos: [
+      { text: 'Learn JavaScript', done:false },
+      { text: 'Learn Vue', done:false},
+      { text: 'Build something awesome', done:false}
+    ],
+    done: [
+      { text: 'Learn JavaScript', done:true },
+      { text: 'Learn Vue', done:true },
+      { text: 'Build something awesome', done:true}
+    ]
+  },
+  methods:{
+    addTodo: function(str){
+      this.todos.push({text:str});
+    }
+  }
+})
+
+</script>
+</body>
+</html>
