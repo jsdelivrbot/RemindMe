@@ -14,8 +14,8 @@ app.get('/todos', function (req, res) {
     // Get content from file
     var contents = fs.readFileSync("todos.json");
     // Define to JSON type
-    //var jsonContent = JSON.parse(contents);
-    res.send(contents);
+    var jsonContent = JSON.parse(contents);
+    res.send(jsonContent);
 });
 // Static Routes
 app.use(express.static('public'));

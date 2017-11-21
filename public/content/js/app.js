@@ -23,12 +23,13 @@ $(document).ready(function(){
     addTodo: function(str){
       var nTodo = {"text":str,"done":false};
       socket.emit('change-notify',nTodo);
-      this.todos.push(nTodo);
+      this.todos.push(JSON.parse(nTodo));
     }
-  },
-  mounted(){
-    socket.on('list-changed',function(data){
-      app.todos=data;
-    });
+  },mounted(){
+
   }
+});
+
+socket.on('list-changed',function(data){
+  app.todos=data;
 });
