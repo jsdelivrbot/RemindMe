@@ -23,7 +23,7 @@ $(document).ready(function(){
     addTodo: function(str){
       var nTodo = {"text":str,"done":false};
       socket.emit('change-notify',nTodo);
-      this.todos.push(JSON.parse(nTodo));
+      this.todos.push(JSON.stringify(nTodo));
     }
   },mounted(){
 
