@@ -30,7 +30,7 @@ io.on('connection',function(socket){
         if(jsonData==""){
             jsonData = "["+data+"]";
         }else{
-            jsonData.push(data);
+            jsonData.push(JSON.parse(data));
         }
         fs.writeFile("todos.json", jsonData, function (err) {
             if (err) return console.log(err);
