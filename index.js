@@ -28,7 +28,7 @@ io.on('connection',function(socket){
 
         console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
         if(jsonData=="[]"){
-            var ndta = "["+data+"]"
+            var ndta = "["+data+"]";
             fs.writeFile("todos.json", ndta, function (err) {
                 if (err) return console.log(err);
             });
