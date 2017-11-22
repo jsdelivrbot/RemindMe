@@ -11,7 +11,7 @@ var server = app.listen((process.env.PORT || 5000),function(){
 
 //Get all active connections
 app.get('/todos', function (req, res) {
-    let jsonData = require('todos.json');    
+    let jsonData = require('./todos.json');    
     res.send(jsonData);
 });
 // Static Routes
@@ -26,7 +26,7 @@ io.on('connection',function(socket){
         data = data.replace("/", "");
         console.log(JSON.stringify(data))
         // Get content from file
-        let jsonData = require('todos.json');
+        let jsonData = require('./todos.json');
         console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
         if(jsonData=="[]"){
             var ndta = "["+JSON.stringify(data)+"]";
