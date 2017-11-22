@@ -27,10 +27,10 @@ io.on('connection',function(socket){
         console.log(JSON.stringify(data))
         // Get content from file
         let jsonData = require('todos.json');
-
         console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
         if(jsonData=="[]"){
             var ndta = "["+JSON.stringify(data)+"]";
+            console.log("kk:"+ ndta);
             fs.writeFile("todos.json", ndta, function (err) {
                 if (err) return console.log(err);
             });
@@ -40,7 +40,6 @@ io.on('connection',function(socket){
                 if (err) return console.log(err);
             });
         }
-
         socket.broadcast.emit('list-changed',JSON.stringify(jsonData));
     });
 });
