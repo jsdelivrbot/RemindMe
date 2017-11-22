@@ -24,11 +24,9 @@ io.on('connection',function(socket){
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         // Get content from file
-        var contents = fs.readFileSync("todos.json");
-        // Define to JSON type
-        var jsonContent = JSON.parse(contents);
-        jsonContent.push(data);
-        fs.writeFile("todos.json", jsonContent, function (err) {
+        let jsonData = require('./todos.json');
+        jsonData.push(data);
+        fs.writeFile("todos.json", jsonData, function (err) {
             if (err) return console.log(err);
         });
         socket.broadcast.emit('list-changed',JSON.stringify(jsonContent));
