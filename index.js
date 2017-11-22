@@ -24,8 +24,9 @@ io.on('connection',function(socket){
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         // Get content from file
-        let jsonData = JSON.parse(require('./todos.json'));
-        console.log("test:"+JSON.stringify(jsonData));
+        let jsonData = require('./todos.json');
+
+        console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
         if(jsonData==""){
             jsonData = "["+data+"]";
         }else{
