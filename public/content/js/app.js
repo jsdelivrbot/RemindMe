@@ -6,7 +6,7 @@ $(document).ready(function(){
     });
   });
   var socket = io.connect("https://remind-me-web.herokuapp.com");
-  $("#todo").keydown(function(event) {
+$("#todo").keydown(function(event) {
   if (event.which == 13) {
    event.preventDefault();
    var todo= $("#todo").val();
@@ -22,11 +22,9 @@ $(document).ready(function(){
   methods:{
     addTodo: function(str){
       var nTodo = {"text":str,"done":false};
-      socket.emit('change-notify',nTodo);
-      this.todos.push(JSON.stringify(nTodo));
+      socket.emit('change-notify',JSON.stringify(nTodo));
+      this.todos.push(nTodo);
     }
-  },mounted(){
-
   }
 });
 
