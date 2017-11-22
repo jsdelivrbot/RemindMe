@@ -25,9 +25,10 @@ io.on('connection',function(socket){
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         data = data.replace("/", "");
-        console.log(JSON.stringify(data))
+        console.log("pbj"+ JSON.stringify(data))
         // Get content from file
         let jsonData = require('./todos.json');
+        
         jsonData.todos.push(JSON.parse(data));
         fs.writeFile("todos.json", jsonData, function (err) {
             if (err) return console.log(err);
