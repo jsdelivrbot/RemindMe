@@ -28,13 +28,17 @@ io.on('connection',function(socket){
 
         console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
         if(jsonData=="[]"){
-            jsonData = "["+data+"]";
+            var ndta = "["+data+"]"
+            fs.writeFile("todos.json", ndta, function (err) {
+                if (err) return console.log(err);
+            });
         }else{
             jsonData.push(JSON.parse(data));
+            fs.writeFile("todos.json", jsonData, function (err) {
+                if (err) return console.log(err);
+            });
         }
-        fs.writeFile("todos.json", jsonData, function (err) {
-            if (err) return console.log(err);
-        });
+
         socket.broadcast.emit('list-changed',JSON.stringify(jsonData));
     });
 });
