@@ -12,8 +12,8 @@ var server = app.listen((process.env.PORT || 5000),function(){
 //Get all active connections
 app.get('/todos', function (req, res) {
     let rawdata = fs.readFileSync('todos.json');  
-    //let student = JSON.parse(rawdata);  
-    console.log(rawdata);  
+    let student = JSON.parse(rawdata);  
+    console.log(student);  
 });
 // Static Routes
 app.use(express.static('public'));
