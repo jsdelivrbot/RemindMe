@@ -29,6 +29,6 @@ io.on('connection',function(socket){
         fs.writeFile("todos.json", jsonData, function (err) {
             if (err) return console.log(err);
         });
-        socket.broadcast.emit('list-changed',JSON.stringify(jsonContent));
+        socket.broadcast.emit('list-changed',JSON.stringify(jsonData));
     });
 });
