@@ -34,6 +34,6 @@ io.on('connection',function(socket){
         fs.writeFile("todos.json", jsonContent, function (err) {
             if (err) return console.log(err);
         });
-        socket.broadcast.emit('list-changed',JSON.parse(jsonContent));
+        socket.broadcast.emit('list-changed',JSON.stringify(jsonContent));
     });
 });
