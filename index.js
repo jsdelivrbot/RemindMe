@@ -11,10 +11,7 @@ var server = app.listen((process.env.PORT || 5000),function(){
 
 //Get all active connections
 app.get('/todos', function (req, res) {
-    // Get content from file
-    var contents = fs.readFileSync("todos.json");
-    // Define to JSON type
-    var jsonContent = JSON.parse(contents);
+    let jsonData = require('./todos.json');    
     res.send(jsonContent);
 });
 // Static Routes
