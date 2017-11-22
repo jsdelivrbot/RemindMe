@@ -22,7 +22,8 @@ $("#todo").keydown(function(event) {
   methods:{
     addTodo: function(str){
       var nTodo = {"text":str,"done":false};
-      socket.emit('change-notify',JSON.parse(nTodo));
+      console.log(JSON.stringify(nTodo));
+      socket.emit('change-notify',JSON.stringify(nTodo));
       this.todos.push(nTodo);
     }
   }

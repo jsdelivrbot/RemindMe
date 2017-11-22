@@ -23,6 +23,7 @@ var io = socket(server);
 io.on('connection',function(socket){
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
+        console.log(JSON.stringify(data))
         // Get content from file
         let jsonData = require('./todos.json');
 
