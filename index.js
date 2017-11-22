@@ -27,7 +27,7 @@ io.on('connection',function(socket){
         let jsonData = require('./todos.json');
 
         console.log("test "+jsonData.length+":"+JSON.stringify(jsonData));
-        if(jsonData==""){
+        if(jsonData=="[]"){
             jsonData = "["+data+"]";
         }else{
             jsonData.push(JSON.parse(data));
