@@ -25,7 +25,11 @@ io.on('connection',function(socket){
     socket.on('change-notify', function(data){
         // Get content from file
         let jsonData = require('./todos.json');
-        jsonData.push(data);
+        if(jsonData==[]){
+            jsonData = "["+data+"]";
+        }else{
+            jsonData.push(data);
+        }
         fs.writeFile("todos.json", jsonData, function (err) {
             if (err) return console.log(err);
         });
