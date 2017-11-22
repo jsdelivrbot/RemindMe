@@ -32,7 +32,7 @@ io.on('connection',function(socket){
         if(jsonData=="[]"){
             var ndta = "["+JSON.stringify(data)+"]";
             console.log("kk:"+ ndta);
-            fs.writeFile("todos.json", ndta, function (err) {
+            fs.writeFile("todos.json", JSON.stringfy(ndta), function (err) {
                 if (err) return console.log(err);
             });
         }else{
