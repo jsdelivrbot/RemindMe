@@ -25,7 +25,8 @@ io.on('connection',function(socket){
     socket.on('change-notify', function(data){
         // Get content from file
         let jsonData = require('./todos.json');
-        if(jsonData.trim()==""){
+        console.log("test:"+JSON.stringify(jsonData));
+        if(jsonData==""){
             jsonData = "["+data+"]";
         }else{
             jsonData.push(data);
