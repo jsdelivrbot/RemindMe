@@ -31,7 +31,7 @@ io.on('connection',function(socket){
         }else{
             jsonData.push(data);
         }
-        fs.writeFile("todos.json", jsonData, function (err) {
+        fs.writeFile("todos.json", JSON.stringify(jsonData), function (err) {
             if (err) return console.log(err);
         });
         socket.broadcast.emit('list-changed',JSON.stringify(jsonData));
