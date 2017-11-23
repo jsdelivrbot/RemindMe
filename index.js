@@ -13,7 +13,7 @@ var server = app.listen((process.env.PORT || 5000),function(){
 app.get('/todos', function (req, res) {
     let rawdata = fs.readFileSync('todos.json');  
     //let student = JSON.parse(rawdata);  
-    console.log(rawdata);  
+    console.log(rawdata.toString());  
 });
 // Static Routes
 app.use(express.static('public'));
