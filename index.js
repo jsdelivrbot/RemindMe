@@ -22,6 +22,8 @@ app.use(express.static('public'));
 var io = socket(server);
 
 io.on('connection',function(socket){
+    let jsonDataF = require('./todos.json');
+    socket.emit('list-changed',JSON.stringify(jsonData));
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         //data = data.replace("/", "");
