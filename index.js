@@ -23,7 +23,7 @@ var io = socket(server);
 
 io.on('connection',function(socket){
     let jsonDataF = require('./todos.json');
-    socket.emit('list-changed',JSON.stringify(jsonData));
+    socket.emit('list-changed',JSON.stringify(jsonDataF));
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         //data = data.replace("/", "");
