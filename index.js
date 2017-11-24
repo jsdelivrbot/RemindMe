@@ -6,15 +6,8 @@ var fs = require("fs");
 var app  = express();
 var server = app.listen((process.env.PORT || 5000),function(){
     console.log("Server UP ON PORT: "+ (process.env.PORT || 5000));
-
 });
 
-//Get all active connections
-app.get('/todos', function (req, res) {
-    let rawdata = fs.readFileSync('todos.json');  
-    //let student = JSON.parse(rawdata);  
-    console.log(rawdata.toString());  
-});
 // Static Routes
 app.use(express.static('public'));
 
