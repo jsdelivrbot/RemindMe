@@ -25,6 +25,11 @@ $("#todo").keydown(function(event) {
       console.log(JSON.stringify(nTodo));
       socket.emit('change-notify',JSON.stringify(nTodo));
       this.todos.push(nTodo);
+    },
+    add: function(){
+      var content = $("#addtxt").val();
+      console.log(content);
+      app.addTodo(content);
     }
   }
 });

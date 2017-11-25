@@ -6,8 +6,15 @@ var fs = require("fs");
 var app  = express();
 var server = app.listen((process.env.PORT || 5000),function(){
     console.log("Server UP ON PORT: "+ (process.env.PORT || 5000));
+
 });
 
+//Get all active connections
+app.get('/todos', function (req, res) {
+    let rawdata = fs.readFileSync('todos.json');  
+    let student = JSON.parse(rawdata);  
+    console.log(student);  
+});
 // Static Routes
 app.use(express.static('public'));
 
@@ -15,11 +22,9 @@ app.use(express.static('public'));
 var io = socket(server);
 
 io.on('connection',function(socket){
-    let jsonDataF = require('./todos.json');
-    socket.emit('list-changed',JSON.stringify(jsonDataF));
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
-        //data = data.replace("/", "");
+        data = data.replace("/", "");
         console.log("pbj"+ JSON.stringify(data))
         // Get content from file
         let jsonData = require('./todos.json');

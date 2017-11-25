@@ -25,20 +25,22 @@
                     </p>
                   </div>
                   <div class="row">
-                    <form class="col s12">
+                    <div class="col s12">
                       <div class="row">
-                        <div class="input-field col s6">
-                          <i class="material-icons prefix">assignment</i>
-                          <div class="col s10"><input id="icon_prefix" type="text" class="validate"></div>
+                        <div class="input-field">
+                          <div class="col s12">
+                          <i class="material-icons prefix">assignment</i>                          
                           <label for="icon_prefix">Todo</label>
-                          <div class="col s2">
-                          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
+                          <input id="addtxt" type="text" class="validate">
+                          </div>
+                          <div class="col s12 test center">
+                          <button id="addBtn" v-on:click="add" class="btn waves-effect waves-light test blue-grey">Add
+                            <i class="material-icons right">add_circle_outline</i>
                           </button>
                           </div>                        
                         </div>
                       </div>
-                    </form>
+                    </div>
                   </div>
               <!--
               <div class="row">
