@@ -14,24 +14,26 @@ $("#todo").keydown(function(event) {
   }
   });
   var app = new Vue({
-  el: '#app',
-  data: {
-    todos: [],
-    dones: []
-  },
-  methods:{
-    addTodo: function(str){
-      var nTodo = {"text":str,"done":false};
-      console.log(JSON.stringify(nTodo));
-      socket.emit('change-notify',JSON.stringify(nTodo));
-      this.todos.push(nTodo);
+    el: '#app',
+    data: {
+      todos: []
     },
-    add: function(){
-      var content = $("#addtxt").val();
-      console.log(content);
-      app.addTodo(content);
+    methods:{
+      addTodo: function(str){
+        var nTodo = {"text":str,"done":false};
+        console.log(JSON.stringify(nTodo));
+        socket.emit('change-notify',JSON.stringify(nTodo));
+        this.todos.push(nTodo);
+      },
+      add: function(){
+        var content = $("#addtxt").val();
+        console.log(content);
+        app.addTodo(content);
+      },
+      done: function(id){
+        
+      }
     }
-  }
 });
 
 socket.on('list-changed',function(data){
