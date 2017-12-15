@@ -55,8 +55,8 @@
 
           <div id="done-tab" class="col s12">
             <h4>Done:</h4>
-              <div class="todolist" v-for="(doneitem, index) in dones">
-                <p>
+              <div class="todolist" v-for="(doneitem, index) in todos">
+                <p v-if="todoitem.done">
                     <input type="checkbox" checked="checked" class="filled-in" disabled="disabled" v-bind:id="'checkdone'+index"/>
                     <label v-bind:for="'check'+index">{{doneitem.text}}</label>
                 </p>
