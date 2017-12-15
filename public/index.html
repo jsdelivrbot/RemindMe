@@ -19,7 +19,7 @@
           <div id="todo-tab" class="col s12">
             <h4>To-do:</h4>
                   <div class="todolist" v-for="(todoitem, index) in todos">
-                    <p>
+                    <p v-if="!todoitem.done">
                         <input type="checkbox" class="filled-in" v-bind:id="'check'+index"/>
                         <label v-bind:for="'check'+index">{{todoitem.text}}</label>
                     </p>
