@@ -56,4 +56,25 @@ io.on('connection',function(socket){
             dbm.close();
         });
     });
+
+    socket.on('done-notify', function(data){
+        //console.log("pbj"+ JSON.stringify(data))
+
+        MongoClient.connect(url, function(err, dbm) {
+            if (err) throw err;
+            var db = dbm.db("remindme");
+            var myquery = { _id: data };
+            var newvalues = { done: true };
+            db.collection("todos").updateOne(myquery, newvalues, function(err, res) {
+              if (err) throw err;
+              console.log("1 document updated");
+            });
+            db.collection("todos").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                socket.broadcast.emit('list-changed',JSON.stringify(result));
+            })
+            dbm.close();
+        });
+    });
+
 });

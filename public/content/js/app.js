@@ -31,7 +31,7 @@ $("#todo").keydown(function(event) {
         app.addTodo(content);
       },
       done: function(id){
-        
+        socket.emit('done-notify',id);
       }
     }
 });
