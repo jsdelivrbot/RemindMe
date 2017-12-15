@@ -64,7 +64,7 @@ io.on('connection',function(socket){
             if (err) throw err;
             var db = dbm.db("remindme");
             var myquery = { _id: data };
-            var newvalues = { done: true };
+            var newvalues = { $set: { done: true } };
             db.collection("todos").updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
               console.log("1 document updated");
