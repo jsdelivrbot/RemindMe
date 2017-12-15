@@ -1,8 +1,9 @@
 var express = require('express');
 var socket = require('socket.io');
 var fs = require("fs");
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://dbUserName:dbpass@ds059207.mlab.com:59207/remindme";
+var mongo = require('mongodb');
+var MongoClient = mongo.MongoClient;
+var url = "mongodb://noam:noam@ds059207.mlab.com:59207/remindme";
 
 // App setup
 var app  = express();
