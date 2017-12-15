@@ -42,7 +42,7 @@ io.on('connection',function(socket){
         MongoClient.connect(url, function(err, db) {
             if (err) throw err;
             var myobj = { todo: "Company Inc", done: false };
-            db.collection("todos").insertOne(myobj, function(err, res) {
+            db.collection("test").insertOne(myobj, function(err, res) {
               if (err) throw err;
               console.log("1 document inserted");
               
