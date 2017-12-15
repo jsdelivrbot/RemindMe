@@ -35,5 +35,5 @@ $("#todo").keydown(function(event) {
 });
 
 socket.on('list-changed',function(data){
-  app.todos=JSON.parse(data).todos;
+  app.todos=JSON.parse(data);
 });
