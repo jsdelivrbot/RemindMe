@@ -45,16 +45,14 @@ io.on('connection',function(socket){
             var db = dbm.db("remindme");
             var myobj = JSON.parse(data);
             db.collection("todos").insertOne(myobj, function(err, res) {
-              if (err) throw err;
-              console.log("1 document inserted");
+                if (err) throw err;
+                console.log("1 document inserted = "+ JSON.stringify(myobj));
             });
             db.collection("todos").find({}).toArray(function(err, result) {
                 if (err) throw err;
-                console.log(result);  
+                socket.broadcast.emit('list-changed',JSON.stringify(result));
             });
-
             dbm.close();
-          });
-        
+        });
     });
 });
