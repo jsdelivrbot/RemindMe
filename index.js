@@ -12,13 +12,6 @@ var server = app.listen((process.env.PORT || 5000),function(){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         console.log("Database connected!");
-        var dbm = db.db("remindme");
-
-        dbm.createCollection("customers", function(err, res) {
-            if (err) throw err;
-            console.log("Collection created!");
-        });
-        
         db.close();
     });
 });
@@ -47,10 +40,11 @@ io.on('connection',function(socket){
             if (err) return console.log(err);
         });
         */
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(url, function(err, dbm) {
             if (err) throw err;
+            var db = dbm.db("remindme");
             var myobj = { todo: "Company Inc", done: false };
-            db.collection("test").insertOne(myobj, function(err, res) {
+            db.collection("todos").insertOne(myobj, function(err, res) {
               if (err) throw err;
               console.log("1 document inserted");
               
