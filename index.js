@@ -32,7 +32,7 @@ io.on('connection',function(socket){
         var db = dbm.db("remindme");
         db.collection("todos").find({}).toArray(function(err, result) {
             if (err) throw err;
-            socket.broadcast.emit('list-changed',JSON.stringify(result));
+            socket.emit('list-changed',JSON.stringify(result));
         });
         dbm.close();
     }); 
