@@ -63,8 +63,8 @@ io.on('connection',function(socket){
         MongoClient.connect(url, function(err, dbm) {
             if (err) throw err;
             var db = dbm.db("remindme");
-            var myquery = { _id: data };
-            var newvalues = { $set: { done: true } };
+            var myquery = { '_id': data };
+            var newvalues = { $set: { 'done' : true } };
             db.collection("todos").updateOne(myquery, newvalues, function(err, res) {
               if (err) throw err;
               console.log("1 document updated");
