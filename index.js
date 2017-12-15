@@ -43,13 +43,17 @@ io.on('connection',function(socket){
         MongoClient.connect(url, function(err, dbm) {
             if (err) throw err;
             var db = dbm.db("remindme");
-            var myobj = { todo: "Company Inc", done: false };
+            var myobj = data;
             db.collection("todos").insertOne(myobj, function(err, res) {
               if (err) throw err;
               console.log("1 document inserted");
-              
-              db.close();
             });
+            db.collection("todos").find({}).toArray(function(err, result) {
+                if (err) throw err;
+                console.log(result);  
+            });
+
+            dbm.close();
           });
         
     });
