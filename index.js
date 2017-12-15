@@ -43,7 +43,7 @@ io.on('connection',function(socket){
         MongoClient.connect(url, function(err, dbm) {
             if (err) throw err;
             var db = dbm.db("remindme");
-            var myobj = data;
+            var myobj = JSON.parse(data);
             db.collection("todos").insertOne(myobj, function(err, res) {
               if (err) throw err;
               console.log("1 document inserted");
