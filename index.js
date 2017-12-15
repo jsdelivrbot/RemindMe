@@ -72,7 +72,7 @@ io.on('connection',function(socket){
             db.collection("todos").find({}).toArray(function(err, result) {
                 if (err) throw err;
                 socket.broadcast.emit('list-changed',JSON.stringify(result));
-            })
+            });
             dbm.close();
         });
     });
