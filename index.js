@@ -28,18 +28,19 @@ app.use(express.static('public'));
 var io = socket(server);
 
 io.on('connection',function(socket){
+    MongoClient.connect(url, function(err, dbm) {
+        var db = dbm.db("remindme");
+        db.collection("todos").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            socket.broadcast.emit('list-changed',JSON.stringify(result));
+        });
+        dbm.close();
+    }); 
     //Handling an action of button click on the phone
     socket.on('change-notify', function(data){
         data = data.replace("/", "");
-        console.log("pbj"+ JSON.stringify(data))
-        // Get content from file
-        //let jsonData = require('./todos.json');
-       /* 
-        jsonData.todos.push(JSON.parse(data));
-        fs.writeFile("todos.json", jsonData, function (err) {
-            if (err) return console.log(err);
-        });
-        */
+        //console.log("pbj"+ JSON.stringify(data))
+
         MongoClient.connect(url, function(err, dbm) {
             if (err) throw err;
             var db = dbm.db("remindme");
